@@ -108,115 +108,66 @@ def game_hash
    }
 end
 
+
+
+
+
+
+
 def num_points_scored(players_name)
-    game_hash.each do |place, team|
-      team.each do |attribute, data|
-        if attribute == :players 
-        data.each do |player|
-          if player[:player_name] == players_name
-  return player[:points]
-          end        
-        end   
-      end  
-    end  
-  end
-end 
-
-def shoe_size(players_name)
-game_hash.each do |place, team|
-      team.each do |attribute, data|
-        if attribute == :players 
-        data.each do |player|
-          if player[:player_name] == players_name
-  return player[:shoe]
-          end        
-        end   
-      end  
-    end  
-  end
-end 
-
-def team_colors(team_name)
-  game_hash.each do |place, team|
-    
-    if team[:team_name] == team_name 
- 
- return team[:colors]
-    end
-  end
-end 
-
-
-def team_names
-  game_hash.map do |place, team|
-  team[:team_name]
-  
-end
-end  
-
-def player_numbers(team_name)
-  
-  new = []
-game_hash.each do |place, team|
-if team[:team_name] == team_name
-  team.each do |attribute, data|
-    if attribute == :players 
-      data.each do |player|
-       new << player[:number]
-  # binding.pry
-end
-end
-end
-end
-end 
-new
-end 
-
-
-def player_stats(player_name)
-  new_hash = {}
-  game_hash.each do |place, team|
-    team.each do |attribute, data|
-      if attribute == :players 
-        data.each do |player|
-          if player[:player_name] == player_name
-  new_hash = player.delete_if do |k, v|
-    k == :player_name
+  game_hash.each do |location, team|
+    team.each do |title, info|
+      if title == :players 
+        info.each do |zoom|
+          if zoom[:player_name] == players_name
+          return zoom[:points]
+          end
+        end
+      end
+    end 
   end 
 end
-end
-end 
- end 
-end
-  new_hash
-end
 
-def big_shoe_rebounds
-  largest_shoe_size = 0 
-  rebounds = 0 
-  game_hash.each do |place, team|
-   team.each do |attribute, data|
-     if attribute == :players 
-       data.each do |x|
-         if x[:shoe] > largest_shoe_size
-           largest_shoe_size = x[:shoe]
-           rebounds = x[:rebounds]
-    
-   
-       #if player has the big shoe size, return the rebounds of that player    
-         
-   
-    
-    
-    
-    
-    
-end    
-end    
-end   
-end    
-end  
-rebounds 
+def shoe_size(players_name)
+  game_hash.each do |location, team|
+    team.each do |title, info|
+      if title == :players 
+        info.each do |zoom|
+          if zoom[:player_name] == players_name
+          return zoom[:shoe]
+          end
+        end
+      end
+    end 
+  end 
 end
+  
+  
+def team_colors(team_name)
+  game_hash.each do |location, team|
+    team.each do |title, info|
+      if title == :team_name
+        if info[:team_name] == team_name
+            binding.pry 
+          return team[:colors]
+
+        end
+      end
+    end
+  end  
+end 
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
